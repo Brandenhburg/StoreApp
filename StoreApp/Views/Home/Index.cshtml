@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Product>
+
+@{ 
+    Layout = "_Layout";
+}
+
+@await Html.PartialAsync("_CarouselPartial");
+
+<section id="sectionTop" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4 text-lg-center">
+                <i class="fas fa-book fa-4x"></i>
+                <a href="#" class="text-dark"><h4>Discover Our Library</h4></a>
+                <p></p>
+            </div>
+            <div class="col-md-4 mb-4 text-lg-center">
+                <i class="fas fa-caret-right fa-4x"></i>
+                <a href="#" class="text-dark"><h4>Get Subscription</h4></a>
+                <p></p>
+            </div>
+            <div class="col-md-4 mb-4 text-lg-center">
+                <i class="fas fa-mobile-alt fa-4x"></i>
+                <a href="#" class="text-dark"><h4>Contact Us</h4></a>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="section-mid" class="p-3">
+        <div class="row">
+            <div class="col-md-12 col-lg-9">
+                <div class="container p-3">
+                    <h1>Learn And Create</h1>
+                    <p class="d-none d-md-flex">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Quas tenetur soluta quasi exercitationem repudiandae sapiente esse laudantium voluptatum nam at.
+                    </p>
+                </div>
+            </div>
+            <div class="d-none col-lg-3 d-lg-block">
+                <img src="/img/pexel3861958.jpg" alt="" class="img-fluid rounded-circle" />
+            </div>
+        </div>
+</section>
+
+<section id="section-bottom" class="container-fluid p-3">
+        <div class="row">
+            @foreach (Product p in Model)
+            {
+                @(await Html.PartialAsync("BookCardPartial", p))
+            }
+        </div>
+</section>
+

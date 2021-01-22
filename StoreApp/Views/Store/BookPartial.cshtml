@@ -1,0 +1,16 @@
+﻿@model Product
+
+
+<div class="col-md-6 col-lg-3">
+    <div class="border bg-light rounded p-1">
+        <img src="~/img/pexels2908773.jpg" class="img-fluid" alt="" />
+        <ul>
+            <li>@Model.Name</li>
+            <li>@Model.Price</li>
+            <li>@Model.Authors.Name</li>
+        </ul>
+        <button class="btn btn-outline-success">Buy</button>
+    </div>
+</div>
+    
+

@@ -1,0 +1,37 @@
+﻿@model  IEnumerable<Product> 
+
+@{ 
+    ViewData["Title"] = "Store";
+    Layout = "_Layout";
+}
+
+<div class="m-1">
+    <form asp-controller="Store" asp-action="Index" method="get" class="form-inline justify-content-center d-flex">
+        <label class=" m-1">Category: </label>
+        <select name="category" class="form-control">
+            <option value="">All</option>
+            <option selected="@(ViewBag.Category == "Python")">Python</option>
+            <option selected="@(ViewBag.Category == "Web Development")">Web Development</option>
+            <option selected="@(ViewBag.Category == "Security")">Security</option>
+            <option selected="@(ViewBag.Category == "Databases")">Databases</option>
+            <option selected="@(ViewBag.Category == "Microsoft & .NET")">Microsoft & .NET</option>
+        </select>
+        <label class="m-1">Minimal Price: </label>
+        <input class="form-control" name="minPrice" value="@ViewBag.MinPrice" />
+        <label class="m-1">Maximal Price: </label>
+        <input class="form-control" name="maxPrice" value="@ViewBag.MaxPrice" />
+        <button class="btn btn-outline-dark m-1">Filter</button>
+    </form>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        @foreach (Product p in Model)
+        {
+            @(await Html.PartialAsync("BookPartial", p));
+        }
+    </div>
+</div>
+
+
+
+
