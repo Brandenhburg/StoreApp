@@ -1,3 +1,3 @@
 # StoreApp
 
-A simple ASP.NET MVC app in developming
+A simple ASP.NET MVC app in developing
