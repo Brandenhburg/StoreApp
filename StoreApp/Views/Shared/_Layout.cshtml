@@ -1,12 +1,17 @@
 ﻿<!DOCTYPE html>
 
 <html lang="en">
-<head>
+<head con>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
     <link href="~/css/style.css" rel="stylesheet" />
+    @*@RenderSection("HomePage", false)*@
+    @RenderSection("AccountCenter", false)
+    @RenderSection("Security", false)
+    @RenderSection("AboutStyle", false)
+    @RenderSection("BookCard", false)
     <title>@ViewBag.Title</title>
 </head>
 <body>
@@ -23,7 +28,7 @@
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Store" asp-action="Index">Shop</a>
+                            <a class="nav-link" asp-controller="Shop" asp-action="Buy">Buy</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="About">About Us</a>
@@ -31,29 +36,47 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact Us</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pages" asp-page="/Account/Center">Account Center</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pages" asp-page="/Account/Logout">Sign Out</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pages" asp-page="/Account/Login">Sign In</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pages" asp-page="/Account/Register">Register</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-
     <div>
         @RenderBody()
     </div>
 
-
     @*Footer*@
 
-    <div id="topFooter">
-        <button class="btn btn-outline-secondary m-4">Register</button>
-        <button class="btn btn-outline-secondary m-4"> Log In </button>
-    </div>
-
     <footer id="theFooter">
-        <div class="row offset-md-3">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div id="topFooter">
+                <a class="btn btn-outline-secondary m-4" asp-area="Pages" asp-page="/Account/Login">Log In</a>
+                <a class="btn btn-outline-secondary m-4" asp-area="Pages" asp-page="/Account/Register">Register</a>
+            </div>
+        }
+        <div id="midFooter" class="row offset-md-3">
             <div class="col-md-2">
-                <div class="text-white mb-2">About Us</div>
+                <h5 class="text-white">About Us</h5>
                 <a href="#" class="f-element">About</a><br />
                 <a href="#" class="f-element">Careers</a><br />
                 <a href="#" class="f-element">Business Contacts</a><br />
@@ -62,12 +85,12 @@
                 <a href="#" class="f-element">News</a><br />
             </div>
             <div class="col-md-2">
-                <div class="text-white mb-2">Products</div><br />
+                <h5 class="text-white">Products</h5>
                 <a href="#" class="f-element">Store</a><br />
                 <a href="#" class="f-element">Subscription</a><br />
             </div>
             <div class="col-md-2">
-                <div class="text-white mb-2">Community</div>
+                <h5 class="text-white">Community</h5>
                 <a href="https://github.com/Brandenhburg" class="f-element" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://medium.com/" class="f-element"><i class="fab fa-medium"></i></a>
                 <a href="https://www.youtube.com/" class="f-element"><i class="fab fa-youtube"></i></a>
@@ -76,11 +99,14 @@
                 <a href="https://www.instagram.com/?hl=en" class="f-element"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
-        <div id="bottomFooter" class="mt-5">
+        <div id="bottomFooter">
             <h6 class="f-element">&#169 localhost:5001/ All rights reserved</h6>
         </div>
     </footer>
+
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", false)
 </body>
 </html>

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoreApp.Data.Repository;
 using System;
 using System.Collections.Generic;
@@ -8,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace StoreApp.Controllers
 {
-    public class StoreController : Controller
+    public class ShopController : Controller
     {
         private IStoreRepository repository;
 
-        public StoreController(IStoreRepository repository)
+        public ShopController(IStoreRepository repository)
         {
             this.repository = repository;
         }
@@ -26,6 +28,12 @@ namespace StoreApp.Controllers
             ViewBag.MaxPrice = maxPrice;
 
             return View(products);
+        }
+
+        [Authorize]
+        public IActionResult Buy()
+        {
+            return View();
         }
 
     }

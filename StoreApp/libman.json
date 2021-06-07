@@ -13,6 +13,20 @@
     {
       "library": "twitter-bootstrap@4.5.3",
       "destination": "wwwroot/lib/twitter-bootstrap"
+    },
+    {
+      "provider": "unpkg",
+      "library": "jquery-validation-unobtrusive@3.2.12",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/",
+      "files": [
+        "dist/jquery.validate.unobtrusive.js",
+        "dist/jquery.validate.unobtrusive.min.js"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "jquery-validation@1.19.3",
+      "destination": "wwwroot/lib/jquery-validation/"
     }
   ]
 }

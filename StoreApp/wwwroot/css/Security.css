@@ -1,0 +1,63 @@
+﻿body{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.accForm {
+    width: 100vw;
+    padding: 4vw;
+}
+    .accForm form div {
+        display: block;
+        margin-top: 1vh;
+    }
+
+    .accForm a {
+        font-size: .8rem;
+        color: black;
+        text-decoration:underline;
+    }
+
+
+.formInput {
+    width: 100%;
+}
+
+
+
+.buttn {
+    font-family: 'Times New Roman', Times, serif;
+    border: 1px  solid black;
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    border: 0px;
+    width: 100%;
+}
+
+    .buttn:hover {
+        background: rgb(41 62 70);
+        box-shadow: 1px 0px -3px 1px rgb(255 255 255);
+        color:white;
+    }
+
+.buttn:focus {
+    border: none;
+}
+
+
+
+
+@media(min-width: 40rem)
+{
+    .accForm {
+        padding: 2vh;
+        margin: 15vh auto 20vh;
+        width: 350px;
+        border: 1px medium;
+/*        box-shadow: 0 0 5px 1px rgba(50, 130, 144, 0.75 );*/
+        box-shadow: 0 0 5px 1px rgba(41, 62, 70, 1.1);
+    }
+}
+
+

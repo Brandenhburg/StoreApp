@@ -1,0 +1,71 @@
+﻿body{
+    display: flex;
+}
+
+.bookCard-Container {
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.book-card {
+    text-align: center;
+    margin: .15em .5em;
+    background: snow
+}
+    .book-card:hover {
+        box-shadow: 0px 0px 5px 2px rgb(222, 231, 253);
+    }
+    .book-card img {
+        width: 200px;
+        float: left;
+    }
+
+
+
+.Buy-butn {
+    display: inline-block;
+    background: rgb(255 255 255);
+    width: 95%;
+    margin: 1em auto;
+    color: black;
+    border: 1px inset green;
+}
+
+.Buy-butn:hover {
+    color: black;
+    text-decoration: none;
+    box-shadow: 0px 0px 2px 2px rgb(87, 155, 173, 0.5);
+}
+
+@media(min-width: 50rem) {
+
+    .bookCard-Container {
+        width: 75vw;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .book-card {
+        width: fit-content;
+        margin: .2em .2em;
+        display: flex;
+        flex-direction: column;
+    }
+        .book-card p {
+            padding: 0.1em;
+        }
+        .book-card h4,h5 {
+            font-size: 0.8em;
+        }
+        .book-card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+
+}

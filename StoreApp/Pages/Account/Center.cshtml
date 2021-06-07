@@ -1,0 +1,46 @@
+﻿@page
+@model AccountCenterModel
+
+@section AccountCenter {
+    <link href="/css/AccountCenter.css" rel="stylesheet" />
+}
+
+    <div class="accCenter">
+        <form asp-page="Center" method="post">
+            <div>
+                <h3>@Model.registeredUser.Id</h3>
+                <h3>@Model.registeredUser.UserName</h3>
+                <h3>@Model.registeredUser.Email</h3>
+                <a asp-page="ChangeEmail" asp-route-id="@Model.registeredUser.Id">Change</a>
+            </div>
+            <div>
+                <h3>Change Password</h3>
+                <a asp-page="ChangePassword" asp-route-id="@Model.registeredUser.Id">Password</a>
+            </div>
+        </form>      
+    </div>
+    
+
+
+
+@functions {
+
+    [Authorize]
+    public class AccountCenterModel : PageModel
+    {
+        private UserManager<AppUser> userManager;
+
+        public AccountCenterModel(UserManager<AppUser> userManager)
+        {
+            this.userManager = userManager;
+        }
+
+        public AppUser registeredUser { get; private set; }
+
+        public async Task<IActionResult> OnGetAsync()
+        {
+            registeredUser = await userManager.FindByNameAsync(User.Identity.Name);
+            return Page();
+        }
+    }
+}

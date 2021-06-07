@@ -1,0 +1,77 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300;1,400&display=swap');
+
+
+body {
+
+    font-family: 'Lato', sans-serif;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+h4 {
+    margin-top: 1vw;
+}   
+
+p {
+    font-family:Constantia;
+    margin-top: 1vw;
+}
+
+
+section {
+    min-height: 30vh;
+    padding: 10vh 0;
+}
+
+
+.firstSection {
+    background: rgb(154 199 195);
+}
+
+.secondSection {
+    background: rgb(41 62 70);
+    color: white;
+}
+
+.aboutContainer {
+    width: 70%;
+    margin: 0 auto;
+    
+}
+
+
+.buttn {
+    display: inline-block;
+    padding: 1em 2em;
+    text-decoration: none
+}
+
+    .buttn:hover {
+        text-decoration: none;
+    }
+
+.buttn-light {
+    background: rgb(41 62 70);
+    color: white;
+}
+
+    .buttn-light:hover {
+        background: #58a7a7;
+        box-shadow: 0px 4px 5px -2px rgb(214 251 255);
+        color: white;
+    }
+
+.buttn-dark {
+    background: rgb(154 199 195);
+    color: darkslategray;
+}
+
+    .buttn-dark:hover {
+        background: rgb(41 62 70);
+        box-shadow: 0px 4px 5px -2px rgb(154 199 195);
+        color: white;
+    }
+

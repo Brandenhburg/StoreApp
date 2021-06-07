@@ -50,29 +50,44 @@ namespace StoreApp.Data.Repository
 
         public async Task<IEnumerable<Product>> GetRandomProductsAsync()
         {
-            List<Product> randomProducts = new List<Product>(4);
 
-            for (int i = 0; i < 4; i++)
+            Product[] randomList = new Product[5];
+
+            for (int i = 0; i < randomList.Length; i++)
             {
-                Product randomProduct = await context.Products.FindAsync(RandomNumberGenerator.GetInt32(1, context.Products.Count()));
+                Product randomPr = await context.Products.FindAsync(RandomNumberGenerator.GetInt32(1, context.Products.Count()));
 
-                while (randomProducts.Contains(randomProduct))
+                while(randomList.Contains(randomPr))
                 {
-                   randomProduct = await context.Products.FindAsync(RandomNumberGenerator.GetInt32(1, context.Products.Count()));
+                    randomPr = await context.Products.FindAsync(RandomNumberGenerator.GetInt32(1, context.Products.Count()));
                 }
-
-                randomProducts.Add(randomProduct);
-
-
-                //int randomProductId = RandomNumberGenerator.GetInt32(1, context.Products.Count());
-                //while (randomProducts.Contains(await context.Products.FindAsync(randomProductId)))
-                //{
-                //    randomProductId = RandomNumberGenerator.GetInt32(1, context.Products.Count());
-                //}
-                //randomProducts.Add(context.Products.Find(randomProductId));
+                randomList[i] = randomPr;
             }
 
-            return randomProducts;
+
+            //List<Product> randomProducts = new List<Product>(4);
+
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    Product randomProduct = await context.Products.FindAsync(RandomNumberGenerator.GetInt32(1, context.Products.Count()));
+
+            //    while (randomProducts.Contains(randomProduct))
+            //    {
+            //       randomProduct = await context.Products.FindAsync(RandomNumberGenerator.GetInt32(1, context.Products.Count()));
+            //    }
+
+            //    randomProducts.Add(randomProduct);
+
+
+            //    //int randomProductId = RandomNumberGenerator.GetInt32(1, context.Products.Count());
+            //    //while (randomProducts.Contains(await context.Products.FindAsync(randomProductId)))
+            //    //{
+            //    //    randomProductId = RandomNumberGenerator.GetInt32(1, context.Products.Count());
+            //    //}
+            //    //randomProducts.Add(context.Products.Find(randomProductId));
+            //}
+
+            return randomList;
         }
     }
 }

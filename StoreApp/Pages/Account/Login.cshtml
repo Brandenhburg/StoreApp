@@ -1,0 +1,96 @@
+﻿@page
+@model LoginModel
+
+@section Security {
+    <link href="/css/Security.css" rel="stylesheet" />
+}
+
+    <div class="accForm">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly"></div>
+            <input name="returnUrl" type="hidden" disabled  value="@Model.ReturnUrl" />
+            <div>
+                <label asp-for="Username">Username</label><br />
+                <input class="formInput"  asp-for="Username" /><br />
+                <span asp-validation-for="Username" class="text-warning"></span>
+            </div>
+            <div>
+                <label asp-for="Password">Password</label><br />
+                <input class="formInput" type="password"  asp-for="Password"/><br />
+                <span asp-validation-for="Password" class="text-warning"></span>
+            </div>
+            <div>
+                <label>Remember Me?</label>
+                <input asp-for="RememberMe" type="checkbox" />
+            </div>
+            <div>
+                <button class="buttn" type="submit"><b>Log In</b></button>
+            </div>
+            <div>
+                <a asp-page="RecoverPassword">Forgot Password ?</a>
+                <a asp-page="Register" class="float-right">Register</a>
+            </div>
+        </form>
+    </div>
+
+@functions {
+
+    public class LoginModel : PageModel
+    {
+        private SignInManager<AppUser> signInManager;
+        private UserManager<AppUser> userManager;
+
+        public LoginModel(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
+        {
+            this.signInManager = signInManager;
+            this.userManager = userManager;
+        }
+
+
+        [BindProperty][Required]
+        public string Username { get; set; }
+
+        [BindProperty][Required]
+        public string Password { get; set; }
+
+        [BindProperty]
+        public bool RememberMe { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string ReturnUrl { get; set; }
+
+
+
+
+        public IActionResult OnGet()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("Center");
+            }
+
+            return Page();
+        }
+
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+
+            if (ModelState.IsValid)
+            {
+                var result = await signInManager.PasswordSignInAsync(Username, Password, RememberMe, true);
+
+                if (result.Succeeded)
+                {
+                    return Redirect(ReturnUrl ?? "Details");
+                }
+                
+
+                ModelState.AddModelError("", "Wrong Username or password");
+            }
+
+            return Page();
+        }
+
+    }
+}

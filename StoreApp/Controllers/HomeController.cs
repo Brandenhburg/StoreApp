@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace StoreApp.Controllers
 {
+    [Route("")]
+    [Route("[controller]")]
     public class HomeController: Controller
     {
 
@@ -20,22 +22,19 @@ namespace StoreApp.Controllers
             this.repository = repository;
         }
 
-        [HttpGet("")]
-        [HttpGet("home")]
         public async Task<IActionResult> Index()
         {
             return View(await repository.GetRandomProductsAsync());
         }
 
 
-        [HttpGet("about")]
+        [Route("[action]")]
         public IActionResult About()
         {
             return View();
         }
 
-
-        [HttpGet("contact")]
+        [Route("[action]")]
         public IActionResult Contact()
         {
             return View();

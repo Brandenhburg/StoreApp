@@ -338,3 +338,7 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/StoreApp/Pages/Account/List.cshtml
+/Orders.APi
+/StoreAppIS4
+/UserApi
