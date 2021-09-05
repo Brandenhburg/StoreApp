@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head con>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    @*@RenderSection("HomePage", false)*@
+    @RenderSection("AccountCenter", false)
+    @RenderSection("Security", false)
+    @RenderSection("AboutStyle", false)
+    @RenderSection("BookCard", false)
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+            <div class="container">
+                <h1 class="navbar-brand"><i class="fa fa-book-open"></i>  Welcome to BookStore</h1>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navigationBar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navigationBar" class="navbar-collapse collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Store" asp-action="Index">Store</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Store" asp-action="Buy">Buy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="About">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact Us</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pages" asp-page="/Account/Center">Account Center</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pages" asp-page="/Account/Logout">Sign Out</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pages" asp-page="/Account/Login">Sign In</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pages" asp-page="/Account/Register">Register</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    @*Footer*@
+
+    <footer id="theFooter">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div id="topFooter">
+                <a class="btn btn-outline-secondary m-4" asp-area="Pages" asp-page="/Account/Login">Log In</a>
+                <a class="btn btn-outline-secondary m-4" asp-area="Pages" asp-page="/Account/Register">Register</a>
+            </div>
+        }
+        <div id="midFooter" class="row offset-md-3">
+            <div class="col-md-2">
+                <h5 class="text-white">About Us</h5>
+                <a href="#" class="f-element">About</a><br />
+                <a href="#" class="f-element">Careers</a><br />
+                <a href="#" class="f-element">Business Contacts</a><br />
+                <a href="#" class="f-element">Terms</a><br />
+                <a href="#" class="f-element">Anouncements</a><br />
+                <a href="#" class="f-element">News</a><br />
+            </div>
+            <div class="col-md-2">
+                <h5 class="text-white">Products</h5>
+                <a href="#" class="f-element">Store</a><br />
+                <a href="#" class="f-element">Subscription</a><br />
+            </div>
+            <div class="col-md-2">
+                <h5 class="text-white">Community</h5>
+                <a href="https://github.com/Brandenhburg" class="f-element" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://medium.com/" class="f-element"><i class="fab fa-medium"></i></a>
+                <a href="https://www.youtube.com/" class="f-element"><i class="fab fa-youtube"></i></a>
+                <a href="https://twitter.com/?lang=en" class="f-element"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/" class="f-element"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/?hl=en" class="f-element"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div id="bottomFooter">
+            <h6 class="f-element">&#169 localhost:5001/ All rights reserved</h6>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", false)
+</body>
+</html>
